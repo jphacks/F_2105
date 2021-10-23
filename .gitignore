@@ -8,6 +8,11 @@ __pycache__
 */*/.DS_Store
 */*/*/.DS_Store
 */*/*/*/.DS_Store
+~$*
+*/$*
+*/*/$*
+*/*/*/$*
+*/*/*/*/$*
 system/.env
 system/deploy.prototxt.txt
 system/multipart-dataset
