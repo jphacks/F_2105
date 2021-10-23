@@ -412,17 +412,16 @@ def api_set_names():
 
     zoom_id = request.json['zoom_id']
 
-    room_df = db.child('room')\
+    try:
+        room_df = db.child('room')\
             .order_by_child('zoom_id')\
             .equal_to(zoom_id)\
             .get().to_df()
-
-    if len(room_df) == 0:
-        raise ValueError(f'the room does not exist. <{zoom_id=}>')
-
-    names = list(room_df['name'])
-
-    return {'status': 'SUCCESS', 'res': names}
+    except IndexError: # 指定のzoom_idがデータベース上に存在しない時、404を返す
+        return '', 404
+    else:
+        names = list(room_df['name'])
+        return {'status': 'SUCCESS', 'res': names}
 
 
 # 動画音声のアップロード・解析・評価保存
