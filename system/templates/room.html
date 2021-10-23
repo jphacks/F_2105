@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <title>ルーム参加登録 - オンラインのアイスブレイクツールならMeltice</title>
+  </head>
+  <body>
+    [% include "html/header.html" %]
+    <div id="room">
+      <h2>名前を入力してください: <input type="text" v-model="name" placeholder="名前"></h2>
+      <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
+      <div id="demo-button" @click="roomSet">
+        会話を開始する
+      </div>
+    </div>
+    [% include "html/footer.html" %]
+  </body>
+</html>
