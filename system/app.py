@@ -125,6 +125,10 @@ def api_suggest_news():
             data = json.loads(req.text)
 
         for datum in data['channel']['item']:
+            # 画像がない記事は飛ばす
+            if datum['imgPath']=='':
+                continue
+
             news_list.append({
                     'url'    : (url := f'{base_url}/news/{datum["link"]}'),
                     'title'  : datum['title'],
