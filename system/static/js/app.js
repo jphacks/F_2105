@@ -117,6 +117,7 @@ var vmEnquete = new Vue({
   data: {
     news_list: [],
     name: "",
+    isAlert: false,
   },
   computed: {
     // 人事によって選ばれた近日のニュースを提示
@@ -139,15 +140,22 @@ var vmEnquete = new Vue({
       }
       for (let i = 0; i < this.news_list.length; ++i) {
         news = this.news_list[i];
-        axios
-          .post("/api/save-degree", {
-            name: this.name,
-            news_id: news.news_id,
-            degree: news.is_wanted ? 10 : 1,
-          })
-          .then((response) => {
-            `status: ${console.log(response.data.status)}`;
-          });
+        if (news.is_wanted === true) {
+          axios
+            .post("/api/save-degree", {
+              name: this.name,
+              news_id: news.news_id,
+              degree: news.is_wanted ? 10 : 1,
+            })
+            .then((response) => {
+              `status: ${console.log(response.data.status)}`;
+            });
+          window.alert("送信しました！");
+          this.isAlert = true;
+        }
+      }
+      if (this.isAlert === false) {
+        window.alert("ニュースを選択してください");
       }
     },
   },
