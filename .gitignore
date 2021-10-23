@@ -1,0 +1,17 @@
+__pycache__
+*/__pycache__
+*/*/__pycache__
+*/*/*/__pycache__
+*/*/*/*/__pycache__
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+*/*/*/.DS_Store
+*/*/*/*/.DS_Store
+system/.env
+system/deploy.prototxt.txt
+system/multipart-dataset
+system/meltice-env
+system/pretrained_ckpt
+system/res10_300x300_ssd_iter_140000.caffemodel
+system/tip-*

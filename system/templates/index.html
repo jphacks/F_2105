@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <title>Meltice - オンラインのアイスブレイクツールならMeltice</title>
+  </head>
+  <body>
+    [% include "html/header.html" %]
+    <div id="front-page">
+    <div id="front-eyecatch">
+      <h1>オンラインのアイスブレイクツールなら<img src="[[ url_for('static', filename='images/meltice-logo-dark.png') ]]"></h1>
+      <p>「デバイスが使える」というオンラインならではの利点を活用し、円滑なコミュニケーションの機会を「オンラインアイスブレイク」という新たな形で提供します。MelticeならオンラインのCXがオフラインを凌駕する世界を実現できます。</p>
+      <div>
+        <div id="demo-button" onclick="location.href='/'">
+          デモで体験する
+        </div>
+        <div id="trial-button" onclick="location.href='/'">
+          無料トライアル
+        </div>
+      </div>
+    </div>
+    <div id="video">
+      <video src="[[ url_for('static', filename='images/meltice-video.mp4') ]]" autoplay muted loop></video>
+    </div>
+    </div>
+    [% include "html/footer.html" %]
+  </body>
+</html>

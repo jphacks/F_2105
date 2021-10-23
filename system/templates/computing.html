@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <title>評価保存 - オンラインのアイスブレイクツールならMeltice</title>
+  </head>
+  <body>
+    [% include "html/header.html" %]
+    <div id="computing">
+      <div>
+        <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
+        <div id="demo-button" @click="namesSet">
+          zoom idを送信
+        </div>
+      </div>
+      <div v-if="names.length > 0">
+        <p>zoom idを送信できました</p>
+        <h2>動画と音声をアップロードしてください</h2>
+        <form method="post" enctype="multipart/form-data">
+          <div>
+            <p>どこに誰が写っていますか？:</p>
+              <table id="video-position">
+                <tbody>
+                  <tr><td class="video-position-left" :rowspan="post_names.length">ニュース画面</td>
+                      <td class="video-position-right">1</td></tr>
+                  <tr><td class="video-position-right">2</td></tr>
+                  <tr><td class="video-position-right">3</td></tr>
+                  <tr><td class="video-position-right">4</td></tr>
+                </tbody>
+              </table>
+            <ul id="video-position-list">
+              <li v-for="ix in 4" :key="ix"> {{ ix }}:
+                <select v-model="post_names[ix]">
+                  <option v-for="name in names" :value="name">{{ name }}</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+          <div>
+            映像: <input type="file" @change="movieSet" accept="video/mp4">
+          </div>
+          <div v-for="(name, ix) in names" :key="ix">
+            音声({{ name }}): <input type="file" @change="(event) => soundSet(event, name)" accept="audio/x-m4a">
+          </div>
+          <div id="demo-button" @click="movieSoundUpload">
+            アップロードする
+          </div>
+        </form>
+      </div>
+    </div>
+    [% include "html/footer.html" %]
+  </body>
+</html>

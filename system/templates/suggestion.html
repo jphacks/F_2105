@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <title>ニュースの話題提示 - オンラインのアイスブレイクツールならMeltice</title>
+  </head>
+  <body>
+    [% include "html/header.html" %]
+    <div id="suggestion">
+      <h2>zoom idを入力してください: <input type="text" placeholder="xxx xxxx xxxx" v-model="zoom_id"></h2>
+      <div id="demo-button" @click="newsSet">
+        会話を開始する
+      </div>
+      <div id="suggested-news" v-if="Object.keys(news).length > 0">
+        <h3>{{ news.title }}</h3>
+        <img :src="news.imgsrc">
+      </div>
+    </div>
+    [% include "html/footer.html" %]
+  </body>
+</html>
