@@ -308,8 +308,9 @@ var vmComputing = new Vue({
     names: [],
     post_names: new Array(5),
     sounds: {},
-    zoom_id: "",
+    zoom_id: '',
     movie: null,
+    errorMessage: null,
   },
   methods: {
     namesSet: function () {
@@ -320,6 +321,11 @@ var vmComputing = new Vue({
         .then((response) => {
           this.names = response.data.res;
           console.log(this.names);
+          this.errorMessage = null; // エラーメッセージのリセット
+        })
+        .catch(()=>{ // zoom idが存在しない場合
+          this.names = []; // 表示をリセット
+          this.errorMessage = '指定のzoom idは存在しません';
         });
     },
     movieSet: function (event) {
