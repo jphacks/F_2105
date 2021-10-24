@@ -10,6 +10,9 @@
   <body>
     [% include "html/header.html" %]
     <div id="computing">
+      <div id="error-message">
+        {{ errorMessage }}
+      </div>
       <div>
         <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
         <div id="demo-button" @click="namesSet">
