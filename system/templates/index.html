@@ -3,29 +3,158 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
-    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
-    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <link
+      rel="stylesheet"
+      href="[[ url_for('static', filename='css/styles.css') ]]"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="[[ url_for('static', filename='images/favicon.png') ]]"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+
     <title>Meltice - オンラインのアイスブレイクツールならMeltice</title>
   </head>
+
   <body>
-    [% include "html/header.html" %]
-    <div id="front-page">
-    <div id="front-eyecatch">
-      <h1>オンラインのアイスブレイクツールなら<img src="[[ url_for('static', filename='images/meltice-logo-dark.png') ]]"></h1>
-      <p>「デバイスが使える」というオンラインならではの利点を活用し、円滑なコミュニケーションの機会を「オンラインアイスブレイク」という新たな形で提供します。MelticeならオンラインのCXがオフラインを凌駕する世界を実現できます。</p>
-      <div>
-        <div id="demo-button" onclick="location.href='/'">
-          デモで体験する
-        </div>
-        <div id="trial-button" onclick="location.href='/'">
-          無料トライアル
-        </div>
-      </div>
+    <div id="app">
+      <v-app>
+        <!-- TODO:VuetifyとCSSのStyleが競合し、HeaderとFotterのレイアウトが崩れてしまう -->
+        [% include "html/header.html" %]
+        <v-content>
+          <v-container>
+            <div id="front-page">
+              <div id="front-eyecatch">
+                <h1>
+                  オンラインのアイスブレイクツールなら<img
+                    src="[[ url_for('static', filename='images/meltice-logo-dark.png') ]]"
+                  />
+                </h1>
+                <p>
+                  「デバイスが使える」というオンラインならではの利点を活用し、円滑なコミュニケーションの機会を「オンラインアイスブレイク」という新たな形で提供します。MelticeならオンラインのCXがオフラインを凌駕する世界を実現できます。
+                </p>
+                <div>
+                  <div id="demo-button" onclick="location.href='/'">
+                    デモで体験する
+                  </div>
+                  <div id="trial-button" onclick="location.href='/'">
+                    無料トライアル
+                  </div>
+
+                  <v-btn
+                    class="font-weight-bold"
+                    style="font-size: 20px"
+                    dark
+                    color="rgb(12, 75, 126)"
+                    rounded
+                    height="80"
+                    width="200"
+                    elevation="0"
+                    onclick="location.href='/'"
+                    :ripple="{ center: false, class: 'blue--text' }"
+                  >
+                    デモで体験する
+                  </v-btn>
+                  <v-btn
+                    class="font-weight-bold"
+                    style="font-size: 20px"
+                    rounded
+                    outlined
+                    height="80"
+                    width="200"
+                    color="rgb( 12,  75, 126)"
+                    elevation="0"
+                    onclick="location.href='/'"
+                    :ripple="{ center: false, class: 'blue--text' }"
+                  >
+                    無料トライアル
+                  </v-btn>
+                </div>
+              </div>
+              <div id="video">
+                <video
+                  src="[[ url_for('static', filename='images/meltice-video.mp4') ]]"
+                  autoplay
+                  muted
+                  loop
+                ></video>
+              </div>
+            </div>
+          </v-container>
+        </v-content>
+        [% include "html/footer.html" %]
+      </v-app>
     </div>
-    <div id="video">
-      <video src="[[ url_for('static', filename='images/meltice-video.mp4') ]]" autoplay muted loop></video>
-    </div>
-    </div>
-    [% include "html/footer.html" %]
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify({
+          theme: {},
+        }),
+      });
+    </script>
   </body>
 </html>
+<!-- <style scoped>
+  .demo-button {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgb(12, 75, 126);
+    border-color: rgb(12, 75, 126);
+    border-radius: 40px;
+    border-width: 3px;
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    border-style: solid;
+    display: inline-block;
+    color: white;
+  }
+
+  .demo-button:hover {
+    background-color: white;
+    border-color: rgb(12, 75, 126);
+  }
+
+  .trial-button {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: white;
+    border-color: rgb(12, 75, 126);
+    border-radius: 40px;
+    border-width: 3px;
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    border-style: solid;
+    display: inline-block;
+    color: rgb(12, 75, 126);
+  }
+
+  .trial-button:hover {
+    background-color: rgb(12, 75, 126);
+    color: white;
+  }
+</style> -->
