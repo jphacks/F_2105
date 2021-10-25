@@ -76,6 +76,7 @@ var vmNews = new Vue({
     news_list: [],
     range_end: 6,
     range_shift: 6,
+    zoom_id: "",
   },
   computed: {
     newsSuggest: function () {
@@ -91,6 +92,10 @@ var vmNews = new Vue({
     },
     // 選んだニュースを送信し保存
     newsSave: function () {
+      if (this.zoom_id === "") {
+        window.alert("zoom idを入力してください");
+        return;
+      }
       for (let i = 0; i < this.news_list.length; ++i) {
         news = this.news_list[i];
         console.log(news.is_wanted);
@@ -101,6 +106,7 @@ var vmNews = new Vue({
               news_id: news.news_id,
               title: news.title,
               imgsrc: news.imgsrc,
+              zoom_id: this.zoom_id,
             })
             .then((response) => {
               this.result = response.data.status;
