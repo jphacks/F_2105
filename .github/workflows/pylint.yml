@@ -20,5 +20,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pip install -r system/requirements.txt
-        pylint system/app.py
-
+        pylint app.py --disable=C0103,E1101,R0914,R0915,W0123,W0105,W0611,W0702

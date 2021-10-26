@@ -1,3 +1,4 @@
+"""this is a test program."""
 import random
 import json
 import os
@@ -9,7 +10,6 @@ from time import time
 from datetime import datetime, timedelta
 
 from traceback import format_exc, print_exc
-format_exc.__dict__['limit'] = print_exc.__dict__['limit'] = 30
 
 import requests
 import pandas as pd
@@ -19,16 +19,34 @@ import ffmpeg
 import cv2
 
 import spacy
-nlp = spacy.load('ja_ginza')
 
 import matplotlib
 import japanize_matplotlib
-matplotlib.use('Agg')
 
 from matplotlib import pyplot as plt
 from bs4 import BeautifulSoup
 
 from dotenv import load_dotenv
+
+from rmn import RMN
+
+from flask import Flask, render_template, jsonify, request
+
+import pyrebase21 as pyrebase
+from utils.constructed_database import News, Room, Speech, Interest, Evaluation
+
+
+#from traceback import format_exc, print_exc
+format_exc.__dict__['limit'] = print_exc.__dict__['limit'] = 30
+
+#import spacy
+nlp = spacy.load('ja_ginza')
+
+#import matplotlib
+#import japanize_matplotlib
+matplotlib.use('Agg')
+
+#from dotenv import load_dotenv
 dotenv_path = f'{os.path.dirname(__file__)}/.env'
 load_dotenv(dotenv_path)
 config = {key: os.environ[key] for key in [
@@ -42,19 +60,17 @@ config = {key: os.environ[key] for key in [
         'measurementId'
     ]}
 
-import pyrebase21 as pyrebase
+#import pyrebase21 as pyrebase
 firebase = pyrebase.initialize_app(config)
 db       = firebase.database()
 
 
-from rmn import RMN
+#from rmn import RMN
 movie_model = RMN()
 
-from flask import Flask, render_template, jsonify, request
-from utils.constructed_database import News, Room, Speech, Interest, Evaluation
-
-
 class CustomFlask(Flask):
+    """custom flask"""
+
     jinja_options = Flask.jinja_options.copy()
     jinja_options.update(dict(
         block_start_string   ='[%',
@@ -66,8 +82,8 @@ class CustomFlask(Flask):
 app = CustomFlask(__name__)
 
 
-# エラーとjsonifyするためのデコレーター
 def deco_api(fn):
+    """ エラーとjsonifyするためのデコレーター """
 
     def inr_fn(*args, **kwargs):
 
@@ -82,10 +98,10 @@ def deco_api(fn):
     return inr_fn
 
 
-# 逆オウム返し
 @deco_api
 @app.route('/api/communicate-torrap', methods=['POST'])
 def api_communicate_torrap():
+    """ 逆オウム返し """
 
     res = request.json['text'][::-1]
     print(f'{res=}')
@@ -93,10 +109,10 @@ def api_communicate_torrap():
     return {'status': 'SUCCESS', 'res': res}
 
 
-# 近日のニュースをニュースサイトから取り出して提示
 @deco_api
 @app.route('/api/suggest-news', methods=['GET'])
 def api_suggest_news():
+    """ 近日のニュースをニュースサイトから取り出して提示 """
 
     """
     category_num:
@@ -143,10 +159,10 @@ def api_suggest_news():
     return {'status': 'SUCCESS', 'res': news_list}
 
 
-# 選んだニュースを受信し保存する
 @deco_api
 @app.route('/api/save-news', methods=['POST'])
 def api_save_news():
+    """ 選んだニュースを受信し保存する """
 
     payload  = {key: request.json[key] for key in [
             'url',
@@ -178,10 +194,10 @@ def api_save_news():
         return {'status': 'ALREADY SETTLED'}
 
 
-# 人事によって選ばれた近日のニュースを提示
 @deco_api
 @app.route('/api/question-news', methods=['GET'])
 def api_question_news():
+    """ 人事によって選ばれた近日のニュースを提示 """
 
     news_df = db.child('news').get().to_df()
     news_df['timestamp'] = pd.to_datetime(
@@ -206,10 +222,10 @@ def api_question_news():
     return {'status': 'SUCCESS', 'res': res}
 
 
-# 興味があるニュースを登録
 @deco_api
 @app.route('/api/save-degree', methods=['POST'])
 def api_save_degree():
+    """ 興味があるニュースを登録 """
 
     payload  = {key: request.json[key] for key in [
             'name',
@@ -242,10 +258,10 @@ def api_save_degree():
         return {'status': 'UPDATED'}
 
 
-# ルームの参加者を登録
 @deco_api
 @app.route('/api/set-room', methods=['POST'])
 def api_set_room():
+    """ ルームの参加者を登録 """
 
     payload = {key: request.json[key] for key in [
             'name',
@@ -260,10 +276,10 @@ def api_set_room():
     return {'status': 'SUCCESS', 'res': room.to_dict()}
 
 
-# 参加者の発言を受信し保存
 @deco_api
 @app.route('/api/save-speech', methods=['POST'])
 def api_save_speech():
+    """ 参加者の発言を受信し保存 """
 
     payload = {key: request.json[key] for key in [
             'name',
@@ -280,6 +296,7 @@ def api_save_speech():
 
 
 def get_interest_df(zoom_id: str):
+    """ 興味のあるニュースを取得する """
 
     # ルーム参加者の名前を全件取得
     names = db.child('room')\
@@ -307,10 +324,10 @@ def get_interest_df(zoom_id: str):
     return interest_df
 
 
-# 登録参加者の興味に応じて初期のニュースを送信
 @deco_api
 @app.route('/api/set-news', methods=['POST'])
 def api_set_news():
+    """ 登録参加者の興味に応じて初期のニュースを送信 """
 
     zoom_id = request.json['zoom_id']
 
@@ -330,10 +347,10 @@ def api_set_news():
     return {'status': 'SUCCESS', 'res': res}
 
 
-# 興味に応じてニュースを変える
 @deco_api
 @app.route('/api/change-topic', methods=['POST'])
 def api_change_topic():
+    """ 興味に応じてニュースを変える """
 
     zoom_id = request.json['zoom_id']
     news_id = request.json['news_id']
@@ -359,7 +376,7 @@ def api_change_topic():
     text = speech_df['text'].sum()
 
     # 自然言語処理で興味度を推定
-    # TODO: もしかしたらMeCabにするかも
+    # もしかしたらMeCabにするかも
     if isinstance(text, str):
         doc = nlp(text)
 
@@ -405,10 +422,10 @@ def api_change_topic():
     return {'status': 'CHANGE', 'res': news}
 
 
-# 参加者の名前を表示
 @deco_api
 @app.route('/api/set-names', methods=['POST'])
 def api_set_names():
+    """ 参加者の名前を表示 """
 
     zoom_id = request.json['zoom_id']
 
@@ -424,10 +441,10 @@ def api_set_names():
         return {'status': 'SUCCESS', 'res': names}
 
 
-# 動画音声のアップロード・解析・評価保存
 @deco_api
 @app.route('/api/save-evaluation', methods=['POST'])
 def api_save_evaluation():
+    """ 動画音声のアップロード・解析・評価保存 """
 
     payload = eval(str(request.form.to_dict()))
     print(f'{payload=}')
@@ -501,14 +518,12 @@ def api_save_evaluation():
             (range(height//2, height   ), range(width//2, width   ))
         ]
 
-    ranges = {
-            name: position for name, position in zip(names, positions)
-        }
+    ranges = dict(zip(names, positions))
     ix = 0
     start = time()
     while True:
         ix += 1
-        ret, img = cap.read()
+        _, img = cap.read()
         if img is None:
             break
 
@@ -537,10 +552,10 @@ def api_save_evaluation():
     return {'status': 'SAVED'}
 
 
-# TODO: 評価を表示
 @deco_api
 @app.route('/api/set-evaluation', methods=['POST'])
 def api_set_evaluation():
+    """ 評価を表示 """
 
     zoom_id = request.json['zoom_id']
 
@@ -565,48 +580,56 @@ def api_set_evaluation():
 
 @app.route('/')
 def page_index():
+    """ page index """
 
     return render_template('index.html')
 
 
 @app.route('/torrap')
 def page_torrap():
+    """ page parrot reversed """
 
     return render_template('torrap.html')
 
 
 @app.route('/news')
 def page_news():
+    """ page news """
 
     return render_template('news.html')
 
 
 @app.route('/enquete')
 def page_question_news():
+    """ page question news """
 
     return render_template('enquete.html')
 
 
 @app.route('/room')
 def page_room():
+    """ page room """
 
     return render_template('room.html')
 
 
 @app.route('/suggestion')
 def page_suggestion():
+    """ page suggestion """
 
     return render_template('suggestion.html')
 
 
 @app.route('/computing')
 def page_computing():
+    """ page computing """
 
     return render_template('computing.html')
 
 
 @app.route('/analysis')
 def page_analysis():
+    """ page analysis """
 
     return render_template('analysis.html')
 
