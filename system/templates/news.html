@@ -10,6 +10,7 @@
   <body>
     [% include "html/header.html" %]
     <div id="news">
+      <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
       <h2 v-model="newsSuggest">質問に入れたいニュースページを選んでください</h2>
       <div id="wanted-news-list-wrapper">
         <wanted-news-list v-for="(news, ix) in news_list" v-if="ix<range_end" :key="news.news_id" :news="news" @is_wanted="(is_wanted) => news.is_wanted=is_wanted"></wanted-news-list>
