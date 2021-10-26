@@ -19,4 +19,6 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
+        pip install -r system/requirements.txt
         pylint system/app.py
+
