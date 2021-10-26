@@ -26,6 +26,15 @@ var vmTorrap = new Vue({
 
 var vmHeader = new Vue({
   el: "#header",
+  methods:{
+    navPoint(link) {
+      if (location.pathname === link){
+        return {current: true};
+      }else{
+        return {current: false};
+      }
+    }
+  }
 });
 
 // アーキテクチャー的にコンポーネントにした方が楽な場合がある
