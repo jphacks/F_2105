@@ -20,4 +20,5 @@ system/meltice-env
 system/pretrained_ckpt
 system/res10_300x300_ssd_iter_140000.caffemodel
 system/tip-*
-.venv
+.venv/lib
+.venv/bin/python*
