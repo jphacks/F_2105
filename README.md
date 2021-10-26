@@ -104,8 +104,8 @@ TEAM TOKIのメンバー
 ## For Developers
 
 ### git clone
-- `git clone https://github.com/278Mt/meltice`
-- `cd meltice`
+- `git clone https://github.com/jphacks/F_2105`
+- `cd F_2105`
 
 ### environment
 - NEED .env file (please ask me: [278Mt](https://github.com/278Mt))
