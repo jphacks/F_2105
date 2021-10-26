@@ -95,6 +95,7 @@
 - 表情認識にはIEEE ICPR 2020で採択された[Residual Masking Network](https://ieeexplore.ieee.org/document/9411919)を用いた。
 
 ## システム開発者紹介
+TEAM TOKIのメンバー
 - [Nozomi Toba](https://withcation.com)
 - 
 - 
