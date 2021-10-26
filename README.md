@@ -2,7 +2,7 @@
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2021/07/JPHACKS2021_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
 
-![IMAGE ALT TEXT](https://raw.githubusercontent.com/jphacks/F_2105/master/system/static/images/meltice-logo-dark.png)]
+![IMAGE ALT TEXT](https://raw.githubusercontent.com/jphacks/F_2105/master/system/static/images/meltice-logo-dark.png)
 
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
