@@ -97,7 +97,7 @@
 ## システム開発者紹介
 TEAM TOKIのメンバー
 - [Nozomi Toba](https://withcation.com)
-- 
+- [Tatsuya Ichino](https://github.com/roaris)
 - 
 - 
 
