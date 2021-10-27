@@ -76,6 +76,7 @@ var vmNews = new Vue({
     news_list: [],
     range_end: 6,
     range_shift: 6,
+    isAlert: false,
   },
   computed: {
     newsSuggest: function () {
@@ -106,7 +107,12 @@ var vmNews = new Vue({
               this.result = response.data.status;
               console.log(`status: ${this.result}`);
             });
+          window.alert("送信しました！");
+          this.isAlert = true;
         }
+      }
+      if (this.isAlert === false) {
+        window.alert("ニュースを選択してください");
       }
     },
   },
