@@ -1,12 +1,12 @@
 // 現在のURLを取り出してきてlocalhostならデバッグモードにする
-const isDebug = location.host == '127.0.0.1:5000';
-const melticeDarkBlue = 'rgb( 12,  75, 126)';
+// const isDebug = location.host == '127.0.0.1:5000';
+// const melticeDarkBlue = 'rgb( 12,  75, 126)';
 // const melticeBlue      = 'rgb( 90, 155, 211)';
-const melticeBlue = 'rgb( 12,  75, 126)';
-const melticeLightBlue = 'rgb(213, 230, 244)';
+// const melticeBlue = 'rgb( 12,  75, 126)';
+// const melticeLightBlue = 'rgb(213, 230, 244)';
 
 // 逆オウム返し
-var vmTorrap = new Vue({
+var vmTorrap = new Vue({ // eslint-disable-line no-unused-vars
   el: '#torrap',
   data: {
     text: '僕は37歳で、そのときボーイング747のシートに座っていた。',
@@ -24,7 +24,7 @@ var vmTorrap = new Vue({
   },
 });
 
-var vmHeader = new Vue({
+var vmHeader = new Vue({ // eslint-disable-line no-unused-vars
   el: '#header',
   methods: {
     navPoint(link) {
@@ -79,7 +79,7 @@ Vue.component('wanted-news-list', {
   },
 });
 
-var vmNews = new Vue({
+var vmNews = new Vue({ // eslint-disable-line no-unused-vars
   el: '#news',
   data: {
     news_list: [],
@@ -106,7 +106,7 @@ var vmNews = new Vue({
         return;
       }
       for (let i = 0; i < this.news_list.length; ++i) {
-        news = this.news_list[i];
+        const news = this.news_list[i];
         console.log(news.is_wanted);
         if (news.is_wanted) {
           axios
@@ -127,7 +127,7 @@ var vmNews = new Vue({
   },
 });
 
-var vmEnquete = new Vue({
+var vmEnquete = new Vue({ // eslint-disable-line no-unused-vars
   el: '#enquete',
   data: {
     news_list: [],
@@ -154,7 +154,7 @@ var vmEnquete = new Vue({
         return;
       }
       for (let i = 0; i < this.news_list.length; ++i) {
-        news = this.news_list[i];
+        const news = this.news_list[i];
         if (news.is_wanted === true) {
           axios
             .post('/api/save-degree', {
@@ -177,7 +177,7 @@ var vmEnquete = new Vue({
 });
 
 // ルームの参加者を登録
-var vmRoom = new Vue({
+var vmRoom = new Vue({ // eslint-disable-line no-unused-vars
   el: '#room',
   data: {
     name: '',
@@ -205,7 +205,7 @@ var vmRoom = new Vue({
     },
     speechSave: function () {
       // 参考資料: https://github.com/tokjin/autoSpeechRecognition
-      SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+      const SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
       const recognition = new SpeechRecognition();
       recognition.lang = 'ja-JP';
       recognition.interimResults = true;
@@ -239,29 +239,39 @@ var vmRoom = new Vue({
         if (e.error == 'no-speech') {
           try {
             recognition.stop();
-          } catch (e) {}
+          } catch (e) {
+            console.error(e);
+          }
           setTimeout(() => {
             try {
               recognition.start();
-            } catch (e) {}
+            } catch (e) {
+              console.error(e);
+            }
           }, 500);
         } else {
           try {
             recognition.stop();
-          } catch (e) {}
+          } catch (e) {
+            console.error(e);
+          }
           setTimeout(() => {
             try {
               recognition.start();
-            } catch (e) {}
+            } catch (e) {
+              console.error(e);
+            }
           }, 500);
         }
       };
 
-      recognition.onspeechend = (e) => {
+      recognition.onspeechend = () => {
         setTimeout(() => {
           try {
             recognition.start();
-          } catch (e) {}
+          } catch (e) {
+            console.error(e);
+          }
         }, 500);
       };
 
@@ -270,13 +280,15 @@ var vmRoom = new Vue({
       setTimeout(() => {
         try {
           recognition.start();
-        } catch (e) {}
+        } catch (e) {
+          console.error(e);
+        }
       }, 2000);
     },
   },
 });
 
-var vmSuggestion = new Vue({
+var vmSuggestion = new Vue({ // eslint-disable-line no-unused-vars
   el: '#suggestion',
   data: {
     zoom_id: '',
@@ -317,7 +329,7 @@ var vmSuggestion = new Vue({
 });
 
 // 参加者の名前を表示
-var vmComputing = new Vue({
+var vmComputing = new Vue({ // eslint-disable-line no-unused-vars
   el: '#computing',
   data: {
     names: [],
@@ -376,7 +388,7 @@ var vmComputing = new Vue({
 });
 
 // 評価を表示
-var vmEvaluationSave = new Vue({
+var vmEvaluationSave = new Vue({ // eslint-disable-line no-unused-vars
   el: '#analysis',
   data: {
     names: [],
@@ -400,7 +412,7 @@ var vmEvaluationSave = new Vue({
         });
     },
     evaluationDisplay: function (name) {
-      partres = this.res[name];
+      const partres = this.res[name];
       this.speaking_im_b64 = partres.speaking_im_b64;
 
       var cop = {

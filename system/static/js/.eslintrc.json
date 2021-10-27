@@ -7,6 +7,8 @@
   "extends": ["eslint:recommended", "prettier"],
   "globals": {
     "Vue": false,
-    "axios": false
+    "axios": false,
+    "webkitSpeechRecognition": false,
+    "Chart": false
   }
 }
