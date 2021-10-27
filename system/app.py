@@ -199,11 +199,11 @@ def api_save_news():
         print('saving news....')
 
         return {'status': 'SAVED'}
-    # データを追加しない
-    else:
-        print(f'the news already settled. <{news_od=}>')
 
-        return {'status': 'ALREADY SETTLED'}
+    # データを追加しない
+    print(f'the news already settled. <{news_od=}>')
+
+    return {'status': 'ALREADY SETTLED'}
 
 
 @deco_api
