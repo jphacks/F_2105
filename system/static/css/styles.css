@@ -4,11 +4,12 @@ body {
   margin: 0;
 }
 
+/*vuetifyのリセットCSSでpaddingとmarginがリセットされてしまうため、対策としてheaderとfooterにおける指定箇所の調整を行いました*/
 #header {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb( 12,  75, 126);
+  background-color: rgb(12, 75, 126);
 }
 
 #header p {
@@ -21,21 +22,22 @@ body {
 
 #header div img {
   display: inline-block;
-  padding: 10px;
+  /* padding: 10px; */
   height: 60px;
   width: auto;
 }
 
 #header div ul {
-  height: 80px;
+  /* height: 80px; */
   margin: 0;
 }
 
 #header div ul li {
   height: 16px;
   font-size: 16px;
-  padding: 32px 8px;
+  padding: 42px 8px;
   display: inline-block;
+  vertical-align: 0.1rem;
   color: white;
 }
 
@@ -52,7 +54,7 @@ body {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb( 12,  75, 126);
+  background-color: rgb(12, 75, 126);
   height: 300px;
 }
 
@@ -69,7 +71,7 @@ body {
 }
 
 #footer div img {
-  padding: 10px;
+  /* padding: 10px; */
   height: 60px;
   width: auto;
 }
@@ -104,7 +106,7 @@ body {
   padding: 30px;
   color: white;
   text-align: center;
-  background-color: rgb( 12,  75, 126);
+  background-color: rgb(12, 75, 126);
 }
 
 /* index.html */
@@ -139,10 +141,10 @@ body {
   margin: 10px;
   font-weight: bold;
   font-size: 20px;
-  background-color: rgb( 12,  75, 126); 
-  border-color: rgb( 12,  75, 126); 
+  background-color: rgb(12, 75, 126);
+  border-color: rgb(12, 75, 126);
   border-radius: 40px;
-  border-width : 3px;
+  border-width: 3px;
   width: 200px;
   text-align: center;
   padding: 20px;
@@ -153,7 +155,7 @@ body {
 
 #demo-button:hover {
   background-color: white;
-  color: rgb( 12,  75, 126);
+  color: rgb(12, 75, 126);
 }
 
 #trial-button {
@@ -161,19 +163,19 @@ body {
   font-weight: bold;
   font-size: 20px;
   background-color: white;
-  border-color: rgb( 12,  75, 126); 
+  border-color: rgb(12, 75, 126);
   border-radius: 40px;
-  border-width : 3px;
+  border-width: 3px;
   width: 200px;
   text-align: center;
   padding: 20px;
   border-style: solid;
   display: inline-block;
-  color: rgb( 12, 75, 126);
+  color: rgb(12, 75, 126);
 }
 
 #trial-button:hover {
-  background-color: rgb( 12,  75, 126);
+  background-color: rgb(12, 75, 126);
   color: white;
 }
 
@@ -181,7 +183,6 @@ body {
 #news {
   text-align: center;
 }
-
 
 #wanted-news-list-wrapper {
   width: 100%;
@@ -192,13 +193,13 @@ body {
 
 .wanted-news-list {
   text-align: center;
-  border  : 3px solid;
-  display : inline-block;
-  padding : 2px 1em;
-  margin  : 4px;
+  border: 3px solid;
+  display: inline-block;
+  padding: 2px 1em;
+  margin: 4px;
   border-radius: 16px;
-  width   : 25%;
-  height  : auto;
+  width: 25%;
+  height: auto;
 }
 
 .wanted-news-list p {
@@ -236,11 +237,11 @@ body {
 }
 
 #suggested-news {
-  border  : 3px solid;
-  padding : 2px 1em;
-  margin  : 4px;
+  border: 3px solid;
+  padding: 2px 1em;
+  margin: 4px;
   border-radius: 16px;
-  height  : 400px;
+  height: 400px;
   background-color: rgb(213, 230, 244);
   display: block;
 }
@@ -269,7 +270,9 @@ body {
   border-collapse: collapse;
 }
 
-#video-position, #video-position td, #video-position tr {
+#video-position,
+#video-position td,
+#video-position tr {
   border: 2px solid;
 }
 
