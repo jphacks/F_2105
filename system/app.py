@@ -173,22 +173,33 @@ def api_save_news():
         ]}
 
     news = News.from_dict(payload)
+    zoom_id = request.json['zoom_id']
     print(f'{news=}')
+
+    settled = False # news_idとzoom_idの組が一致するデータが存在するかのフラグ
 
     try:
         news_od = db.child('news')\
                 .order_by_child('news_id')\
                 .equal_to(news.news_id)\
                 .get().val()
-
-    # ニュースがない場合は追加
     except IndexError:
-        db.child('news').push(news.to_dict())
+        pass # 該当のnews_idのデータがないのでFalseのまま
+    else:
+        # 該当のnews_idのデータがある場合、そのデータの中に該当のzoom_idのデータが存在するかチェック
+        for value in news_od.values():
+            if 'zoom_id' in value and value['zoom_id'] == zoom_id:
+                settled = True
+
+    # データを追加する
+    if not settled:
+        push_data = news.to_dict()
+        push_data['zoom_id'] = zoom_id
+        db.child('news').push(push_data)
         print('saving news....')
 
         return {'status': 'SAVED'}
-
-    # ニュースがある場合は追加しない
+    # データを追加しない
     else:
         print(f'the news already settled. <{news_od=}>')
 
