@@ -98,7 +98,7 @@
 TEAM TOKIのメンバー
 - [Nozomi Toba](https://withcation.com)
 - [Tatsuya Ichino](https://github.com/roaris)
-- 
+- [Yu Osaka](https://github.com/yud0uhu)
 - 
 
 ## For Developers
