@@ -1,21 +1,21 @@
 // 現在のURLを取り出してきてlocalhostならデバッグモードにする
-const isDebug = location.host == "127.0.0.1:5000";
-const melticeDarkBlue = "rgb( 12,  75, 126)";
+const isDebug = location.host == '127.0.0.1:5000';
+const melticeDarkBlue = 'rgb( 12,  75, 126)';
 // const melticeBlue      = 'rgb( 90, 155, 211)';
-const melticeBlue = "rgb( 12,  75, 126)";
-const melticeLightBlue = "rgb(213, 230, 244)";
+const melticeBlue = 'rgb( 12,  75, 126)';
+const melticeLightBlue = 'rgb(213, 230, 244)';
 
 // 逆オウム返し
 var vmTorrap = new Vue({
-  el: "#torrap",
+  el: '#torrap',
   data: {
-    text: "僕は37歳で、そのときボーイング747のシートに座っていた。",
-    res: "pretext",
+    text: '僕は37歳で、そのときボーイング747のシートに座っていた。',
+    res: 'pretext',
   },
   methods: {
     torrapCommunicate: function () {
       axios
-        .post("/api/communicate-torrap", { text: this.text })
+        .post('/api/communicate-torrap', { text: this.text })
         .then((response) => {
           this.res = response.data.res;
           console.log(`res: ${this.res}`);
@@ -25,21 +25,21 @@ var vmTorrap = new Vue({
 });
 
 var vmHeader = new Vue({
-  el: "#header",
-  methods:{
+  el: '#header',
+  methods: {
     navPoint(link) {
-      if (location.pathname === link){
-        return {current: true};
-      }else{
-        return {current: false};
+      if (location.pathname === link) {
+        return { current: true };
+      } else {
+        return { current: false };
       }
-    }
-  }
+    },
+  },
 });
 
 // アーキテクチャー的にコンポーネントにした方が楽な場合がある
 // https://forum.vuejs.org/t/change-div-background-color-on-click/75549#:~:text=architectural
-Vue.component("wanted-news-list", {
+Vue.component('wanted-news-list', {
   template: `
     <div
       class="wanted-news-list"
@@ -74,22 +74,22 @@ Vue.component("wanted-news-list", {
     newsSelect: function () {
       this.is_wanted = !this.is_wanted;
       console.log(`is_wanted: ${this.is_wanted}`);
-      this.$emit("is_wanted", this.is_wanted);
+      this.$emit('is_wanted', this.is_wanted);
     },
   },
 });
 
 var vmNews = new Vue({
-  el: "#news",
+  el: '#news',
   data: {
     news_list: [],
     range_end: 6,
     range_shift: 6,
-    zoom_id: "",
+    zoom_id: '',
   },
   computed: {
     newsSuggest: function () {
-      axios.get("/api/suggest-news").then((response) => {
+      axios.get('/api/suggest-news').then((response) => {
         this.news_list = response.data.res;
         console.log(this.news_list);
       });
@@ -101,8 +101,8 @@ var vmNews = new Vue({
     },
     // 選んだニュースを送信し保存
     newsSave: function () {
-      if (this.zoom_id === "") {
-        window.alert("zoom idを入力してください");
+      if (this.zoom_id === '') {
+        window.alert('zoom idを入力してください');
         return;
       }
       for (let i = 0; i < this.news_list.length; ++i) {
@@ -110,7 +110,7 @@ var vmNews = new Vue({
         console.log(news.is_wanted);
         if (news.is_wanted) {
           axios
-            .post("/api/save-news", {
+            .post('/api/save-news', {
               url: news.url,
               news_id: news.news_id,
               title: news.title,
@@ -128,16 +128,16 @@ var vmNews = new Vue({
 });
 
 var vmEnquete = new Vue({
-  el: "#enquete",
+  el: '#enquete',
   data: {
     news_list: [],
-    name: "",
+    name: '',
     isAlert: false,
   },
   computed: {
     // 人事によって選ばれた近日のニュースを提示
     newsQuestion: function () {
-      axios.get("/api/question-news").then((response) => {
+      axios.get('/api/question-news').then((response) => {
         this.news_list = response.data.res;
         console.log(this.news_list);
         for (let i = 0; i < this.news_list.length; ++i) {
@@ -150,14 +150,14 @@ var vmEnquete = new Vue({
     // 興味があるニュースを登録
     degreeSave: function () {
       if (this.name.length === 0) {
-        window.alert("名前を入力してください");
+        window.alert('名前を入力してください');
         return;
       }
       for (let i = 0; i < this.news_list.length; ++i) {
         news = this.news_list[i];
         if (news.is_wanted === true) {
           axios
-            .post("/api/save-degree", {
+            .post('/api/save-degree', {
               name: this.name,
               news_id: news.news_id,
               degree: news.is_wanted ? 10 : 1,
@@ -165,12 +165,12 @@ var vmEnquete = new Vue({
             .then((response) => {
               `status: ${console.log(response.data.status)}`;
             });
-          window.alert("送信しました！");
+          window.alert('送信しました！');
           this.isAlert = true;
         }
       }
       if (this.isAlert === false) {
-        window.alert("ニュースを選択してください");
+        window.alert('ニュースを選択してください');
       }
     },
   },
@@ -178,23 +178,23 @@ var vmEnquete = new Vue({
 
 // ルームの参加者を登録
 var vmRoom = new Vue({
-  el: "#room",
+  el: '#room',
   data: {
-    name: "",
-    zoom_id: "",
+    name: '',
+    zoom_id: '',
   },
   methods: {
     roomSet: function () {
       if (this.name.length === 0) {
-        window.alert("名前を入力してください");
+        window.alert('名前を入力してください');
         return;
       }
       if (this.zoom_id.length === 0) {
-        window.alert("zoom idを入力してください");
+        window.alert('zoom idを入力してください');
         return;
       }
       axios
-        .post("/api/set-room", {
+        .post('/api/set-room', {
           name: this.name,
           zoom_id: this.zoom_id,
         })
@@ -207,12 +207,12 @@ var vmRoom = new Vue({
       // 参考資料: https://github.com/tokjin/autoSpeechRecognition
       SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
       const recognition = new SpeechRecognition();
-      recognition.lang = "ja-JP";
+      recognition.lang = 'ja-JP';
       recognition.interimResults = true;
       recognition.continuous = false;
 
       recognition.onresult = (event) => {
-        let finalText = "";
+        let finalText = '';
 
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           let transcript = event.results[i][0].transcript;
@@ -223,7 +223,7 @@ var vmRoom = new Vue({
         if (finalText.length > 0) {
           console.log(`text: ${finalText}`);
           axios
-            .post("/api/save-speech", {
+            .post('/api/save-speech', {
               name: this.name,
               zoom_id: this.zoom_id,
               text: finalText,
@@ -235,8 +235,8 @@ var vmRoom = new Vue({
       };
 
       recognition.onerror = (e) => {
-        console.log("onerror", e);
-        if (e.error == "no-speech") {
+        console.log('onerror', e);
+        if (e.error == 'no-speech') {
           try {
             recognition.stop();
           } catch (e) {}
@@ -277,19 +277,19 @@ var vmRoom = new Vue({
 });
 
 var vmSuggestion = new Vue({
-  el: "#suggestion",
+  el: '#suggestion',
   data: {
-    zoom_id: "",
+    zoom_id: '',
     news: {},
   },
   methods: {
     // 登録参加者の興味に応じて初期のニュースを送信
     newsSet: function () {
       if (this.zoom_id.lendth === 0) {
-        window.alert("名前を入力してください");
+        window.alert('名前を入力してください');
       }
       axios
-        .post("/api/set-news", {
+        .post('/api/set-news', {
           zoom_id: this.zoom_id,
         })
         .then((response) => {
@@ -301,14 +301,14 @@ var vmSuggestion = new Vue({
     // 興味に応じてニュースを変える
     topicChange: function () {
       axios
-        .post("/api/change-topic", {
+        .post('/api/change-topic', {
           zoom_id: this.zoom_id,
           news_id: this.news.news_id,
           title: this.news.title,
         })
         .then((response) => {
           console.log(`res: ${response.data.status}`);
-          if (response.data.status === "CHANGE") {
+          if (response.data.status === 'CHANGE') {
             this.news = response.data.res;
           }
         });
@@ -318,7 +318,7 @@ var vmSuggestion = new Vue({
 
 // 参加者の名前を表示
 var vmComputing = new Vue({
-  el: "#computing",
+  el: '#computing',
   data: {
     names: [],
     post_names: new Array(5),
@@ -330,7 +330,7 @@ var vmComputing = new Vue({
   methods: {
     namesSet: function () {
       axios
-        .post("/api/set-names", {
+        .post('/api/set-names', {
           zoom_id: this.zoom_id,
         })
         .then((response) => {
@@ -338,7 +338,8 @@ var vmComputing = new Vue({
           console.log(this.names);
           this.errorMessage = null; // エラーメッセージのリセット
         })
-        .catch(()=>{ // zoom idが存在しない場合
+        .catch(() => {
+          // zoom idが存在しない場合
           this.names = []; // 表示をリセット
           this.errorMessage = '指定のzoom idは存在しません';
         });
@@ -353,18 +354,18 @@ var vmComputing = new Vue({
     },
     movieSoundUpload: function () {
       let formData = new FormData();
-      formData.append("movie", this.movie);
+      formData.append('movie', this.movie);
       for (let i = 0; i < this.names.length; ++i) {
         let name = this.names[i];
         formData.append(`sound-${name}`, this.sounds[name]);
       }
-      formData.append("zoom_id", this.zoom_id);
-      formData.append("names", this.post_names);
+      formData.append('zoom_id', this.zoom_id);
+      formData.append('names', this.post_names);
 
       axios
-        .post("/api/save-evaluation", formData, {
+        .post('/api/save-evaluation', formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         })
         .then((response) => {
@@ -376,19 +377,19 @@ var vmComputing = new Vue({
 
 // 評価を表示
 var vmEvaluationSave = new Vue({
-  el: "#analysis",
+  el: '#analysis',
   data: {
     names: [],
-    zoom_id: "",
-    speaking_im_b64: "",
-    particular_name: "",
+    zoom_id: '',
+    speaking_im_b64: '',
+    particular_name: '',
     res: {},
     prechart: undefined,
   },
   methods: {
     evaluationSet: function () {
       axios
-        .post("/api/set-evaluation", {
+        .post('/api/set-evaluation', {
           zoom_id: this.zoom_id,
         })
         .then((response) => {
@@ -403,20 +404,20 @@ var vmEvaluationSave = new Vue({
       this.speaking_im_b64 = partres.speaking_im_b64;
 
       var cop = {
-        type: "doughnut",
+        type: 'doughnut',
         data: {
           labels: [
-            "angry",
-            "disgust",
-            "fear",
-            "happy",
-            "neutral",
-            "sad",
-            "surprise",
+            'angry',
+            'disgust',
+            'fear',
+            'happy',
+            'neutral',
+            'sad',
+            'surprise',
           ],
           datasets: [
             {
-              label: "# frames",
+              label: '# frames',
               data: [
                 partres.angry,
                 partres.disgust,
@@ -427,13 +428,13 @@ var vmEvaluationSave = new Vue({
                 partres.surprise,
               ],
               backgroundColor: [
-                "rgba(146,  43, 150)",
-                "rgba(197,  43,  46)",
-                "rgba(250, 226,  78)",
-                "rgba(246, 180, 194)",
-                "rgba(100, 184,  99)",
-                "rgba(176, 210, 211)",
-                "rgba(224,  33, 120)",
+                'rgba(146,  43, 150)',
+                'rgba(197,  43,  46)',
+                'rgba(250, 226,  78)',
+                'rgba(246, 180, 194)',
+                'rgba(100, 184,  99)',
+                'rgba(176, 210, 211)',
+                'rgba(224,  33, 120)',
               ],
               hoverOffset: 4,
             },
@@ -441,7 +442,7 @@ var vmEvaluationSave = new Vue({
         },
       };
       if (window.emotionChart) window.emotionChart.destroy();
-      window.emotionChart = new Chart("emotion-chart", cop);
+      window.emotionChart = new Chart('emotion-chart', cop);
     },
   },
 });
