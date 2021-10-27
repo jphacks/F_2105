@@ -12,3 +12,4 @@ python-dotenv==0.19.0
 requests==2.26.0
 rmn==3.0.2
 spacy==3.1.2
+japanize_matplotlib==1.1.3

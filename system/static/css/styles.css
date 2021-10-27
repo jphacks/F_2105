@@ -47,6 +47,10 @@ body {
   color: rgb(12, 75, 126);
 }
 
+.current {
+  background-color: rgb(24, 100, 161);
+}
+
 /* footer.html */
 #footer {
   justify-content: center;
@@ -261,6 +265,11 @@ body {
 
 #computing h2 {
   padding: 20px;
+}
+
+#error-message {
+  color: red;
+  font-weight: bold;
 }
 
 #video-position {
