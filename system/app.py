@@ -495,7 +495,7 @@ def api_save_evaluation():
     cap = cv2.VideoCapture(tmp_movie_fname)
     os.remove(tmp_movie_fname)
     width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    #height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
     fers = {name: {emotion: 0 for emotion in emotions}
@@ -571,10 +571,9 @@ def api_set_evaluation():
             .order_by_child('zoom_id')\
             .equal_to(zoom_id)\
             .get().to_df()
-        
+
     emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
     res = {}
-    print(res)
     for name in evaluation_df['name']:
         _res = {}
         df = evaluation_df[evaluation_df['name'] == name]
@@ -584,7 +583,6 @@ def api_set_evaluation():
         _res['speaking_im_b64'] = list(df['speaking_im_b64'])[0]
         res[name] = _res
 
-    print(res)
     return {'status': 'SUCCESS', 'res': res}
 
 
