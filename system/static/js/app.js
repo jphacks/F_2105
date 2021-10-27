@@ -1,9 +1,9 @@
 // 現在のURLを取り出してきてlocalhostならデバッグモードにする
-// const isDebug = location.host == '127.0.0.1:5000';
-// const melticeDarkBlue = 'rgb( 12,  75, 126)';
-// const melticeBlue      = 'rgb( 90, 155, 211)';
-// const melticeBlue = 'rgb( 12,  75, 126)';
-// const melticeLightBlue = 'rgb(213, 230, 244)';
+const isDebug = location.host == '127.0.0.1:5000'; // eslint-disable-line no-unused-vars
+const melticeDarkBlue = 'rgb( 12,  75, 126)'; // eslint-disable-line no-unused-vars
+// const melticeBlue = 'rgb( 90, 155, 211)'; // eslint-disable-line no-unused-vars
+const melticeBlue = 'rgb( 12,  75, 126)'; // eslint-disable-line no-unused-vars
+const melticeLightBlue = 'rgb(213, 230, 244)'; // eslint-disable-line no-unused-vars
 
 // 逆オウム返し
 // eslint-disable-next-line no-unused-vars
