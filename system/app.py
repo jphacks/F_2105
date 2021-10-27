@@ -5,6 +5,7 @@ import os
 import inspect
 import base64
 
+from math import ceil
 from pprint import pp
 from time import time
 from datetime import datetime, timedelta
@@ -503,19 +504,26 @@ def api_save_evaluation():
 
     """
     positions:
-    +--------+-------+
-    |   0    |   1   |
-    +--------+-------+
-    |   2    |   3   |
-    +--------+-------+
+    +--------------------------------+-------+
+    |                                |   0   |
+    |                                +-------+
+    |                                |   2   |
+    |                                +-------+
+    |                                |   1   |
+    |                                +-------+
+    |                                |   3   |
+    |                                +-------+
+    |                                        |
+    |                                        |
+    |                                        |
+    +----------------------------------------+
     """
-    # ここは必ず変わる
 
+    crop_width  = width - 1680
+    crop_height = ceil(crop_width / 16 * 9)
     positions = [
-            (range(        0, height//2), range(       0, width//2)),
-            (range(        0, height//2), range(width//2, width   )),
-            (range(height//2, height   ), range(       0, width//2)),
-            (range(height//2, height   ), range(width//2, width   ))
+            (range(crop_height*i, crop_height*(i+1)), range(0, crop_width))
+            for i in range(len(names))
         ]
 
     ranges = dict(zip(names, positions))
@@ -527,7 +535,7 @@ def api_save_evaluation():
         if img is None:
             break
 
-        img = np.fliplr(img).astype(np.uint8)
+        img = img.astype(np.uint8)[:crop_height*len(names), -crop_width:]
         results = movie_model.detect_emotion_for_single_frame(img)
         for result in results:
             xmin, ymin = result['xmin'], result['ymin']
@@ -563,9 +571,10 @@ def api_set_evaluation():
             .order_by_child('zoom_id')\
             .equal_to(zoom_id)\
             .get().to_df()
-
+        
     emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
     res = {}
+    print(res)
     for name in evaluation_df['name']:
         _res = {}
         df = evaluation_df[evaluation_df['name'] == name]
@@ -575,6 +584,7 @@ def api_set_evaluation():
         _res['speaking_im_b64'] = list(df['speaking_im_b64'])[0]
         res[name] = _res
 
+    print(res)
     return {'status': 'SUCCESS', 'res': res}
 
 
