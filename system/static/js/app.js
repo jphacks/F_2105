@@ -6,7 +6,8 @@
 // const melticeLightBlue = 'rgb(213, 230, 244)';
 
 // 逆オウム返し
-var vmTorrap = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmTorrap = new Vue({
   el: '#torrap',
   data: {
     text: '僕は37歳で、そのときボーイング747のシートに座っていた。',
@@ -24,7 +25,8 @@ var vmTorrap = new Vue({ // eslint-disable-line no-unused-vars
   },
 });
 
-var vmHeader = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmHeader = new Vue({
   el: '#header',
   methods: {
     navPoint(link) {
@@ -79,7 +81,8 @@ Vue.component('wanted-news-list', {
   },
 });
 
-var vmNews = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmNews = new Vue({
   el: '#news',
   data: {
     news_list: [],
@@ -127,7 +130,8 @@ var vmNews = new Vue({ // eslint-disable-line no-unused-vars
   },
 });
 
-var vmEnquete = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmEnquete = new Vue({
   el: '#enquete',
   data: {
     news_list: [],
@@ -177,7 +181,8 @@ var vmEnquete = new Vue({ // eslint-disable-line no-unused-vars
 });
 
 // ルームの参加者を登録
-var vmRoom = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmRoom = new Vue({
   el: '#room',
   data: {
     name: '',
@@ -288,7 +293,8 @@ var vmRoom = new Vue({ // eslint-disable-line no-unused-vars
   },
 });
 
-var vmSuggestion = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmSuggestion = new Vue({
   el: '#suggestion',
   data: {
     zoom_id: '',
@@ -329,7 +335,8 @@ var vmSuggestion = new Vue({ // eslint-disable-line no-unused-vars
 });
 
 // 参加者の名前を表示
-var vmComputing = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmComputing = new Vue({
   el: '#computing',
   data: {
     names: [],
@@ -388,7 +395,8 @@ var vmComputing = new Vue({ // eslint-disable-line no-unused-vars
 });
 
 // 評価を表示
-var vmEvaluationSave = new Vue({ // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+var vmEvaluationSave = new Vue({
   el: '#analysis',
   data: {
     names: [],
