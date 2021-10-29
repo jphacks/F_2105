@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <title>ニュースの話題提示 - オンラインのアイスブレイクツールならMeltice</title>
+
+    <!-- Spectre.css v0.5.9 -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <!-- contact.html 専用 -->
+    <link rel="stylesheet" href="../static/css/contact/contact.css">
+  </head>
+  <body>
+    [% include "html/header.html" %]
+    <!-- お問い合わせ -->
+    <div id="contact" class="container" v-cloak>
+        <h2>お問い合わせフォーム</h2>
+        <transition-group name="fade" tag="div" mode="out-in">
+            <form
+            key="1" v-show="!submitted"
+            name="gf_form" method="POST" target="hidden_iframe"
+            :action="formdata.doc" @submit.prevent="gf_submit()">
+                <listitem v-for="(item, index) in formdata.survey" :item="item" :index="index"></listitem>
+                <br>
+                <button class="btn btn-primary input-group-btn">送信する</button>        
+            </form>
+
+            <div key="2" v-show="submitted">
+            <p>
+                送信しました。<br>
+                <a href="/">トップへ</a>
+            </p>
+            </div>
+        </transition-group>
+        </div>
+    </div>
+    <!-- /問い合わせ -->
+    [% include "html/footer.html" %]
+  </body>
+    <!-- Vue.js v2.6.7  vee-validate@2.2.0  vee-validate@2.1.7 -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vee-validate@2.2.0/dist/vee-validate.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vee-validate@2.1.7/dist/locale/ja.js"></script>
+    <!-- contact.html 専用 -->
+    <script type="text/javascript" src="../static/js/contact/vue-gf.js"></script>
+    <script type="text/javascript" src="../static/js/contact/vue-gf-data.js"></script>
+</html>
+
+<!-- 
+以下を読み込んでいる
+Spectre …… CSSフレームワーク
+contact.css
+Vue.js
+VeeValidate …… プラグイン。フォームのバリデーション
+locale/ja.js …… VeeValidateのメッセージの日本語化
+vue-gf.js …… フォーム作成のJSファイル
+vue-gf-data.js …… フォームごとの固有データのみを記述するファイル
+-->
