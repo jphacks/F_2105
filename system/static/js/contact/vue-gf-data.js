@@ -30,7 +30,6 @@ contact.formdata = {
       name: 529582982, // ここに入力 10桁
       question: '電話番号',
       questiontype: 'text',
-      label: 'email',
       placeholder: '0123456789',
       validate: 'required|numeric'
     },
