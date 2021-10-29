@@ -95,13 +95,13 @@ class Speech(Expression):
 class Interest(Expression):
 
     def __init__(self,
-            name: str, news_id: str, degree: int
+            name: str, news_id: str, degree: int, zoom_id: str
         ):
 
         if not 0 < degree <= 10:
             raise ValueError(f'degree must be in (0, 10]. <{degree=}>')
 
-        super().__init__(name, news_id, degree)
+        super().__init__(name, news_id, degree, zoom_id)
 
 
 
