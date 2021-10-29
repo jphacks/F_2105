@@ -292,28 +292,18 @@ def api_save_speech():
 def get_interest_df(zoom_id: str):
     """ 興味のあるニュースを取得する """
 
-    # ルーム参加者の名前を全件取得
-    names = db.child('room')\
-            .order_by_child('zoom_id')\
-            .equal_to(zoom_id)\
-            .get().to_df()['name']
-    print('names=')
-    print(names)
-
-    # ルーム参加者全員の中で最も人気があるニュースを持ってくる
+    # 該当のzoom_idで興味を持たれたニュースを取得
     interest_df = pd.DataFrame(index=[], columns=['name', 'news_id', 'degree'])
-    for name in names:
-        try:
-            _interest_df = db.child('interest')\
-                    .order_by_child('name')\
-                    .equal_to(name)\
-                    .get().to_df()
-        except:
-            continue
-
+    try:
+        _interest_df = db.child('interest')\
+                .order_by_child('zoom_id')\
+                .equal_to(zoom_id)\
+                .get().to_df()
+    except:
+        pass
+    else:
         interest_df = pd.concat([interest_df, _interest_df])
-
-    interest_df['degree'] = interest_df['degree'].astype(int)
+        interest_df['degree'] = interest_df['degree'].astype(int)
 
     return interest_df
 
