@@ -176,20 +176,12 @@ def api_save_news():
     zoom_id = request.json['zoom_id']
     print(f'{news=}')
 
+    news_od = db.child('news').get().val()
     settled = False # news_idとzoom_idの組が一致するデータが存在するかのフラグ
 
-    try:
-        news_od = db.child('news')\
-                .order_by_child('news_id')\
-                .equal_to(news.news_id)\
-                .get().val()
-    except IndexError:
-        pass # 該当のnews_idのデータがないのでFalseのまま
-    else:
-        # 該当のnews_idのデータがある場合、そのデータの中に該当のzoom_idのデータが存在するかチェック
-        for value in news_od.values():
-            if 'zoom_id' in value and value['zoom_id'] == zoom_id:
-                settled = True
+    for value in news_od.values():
+        if value['news_id'] == news.news_id and 'zoom_id' in value and value['zoom_id'] == zoom_id:
+            settled = True
 
     # データを追加する
     if not settled:
