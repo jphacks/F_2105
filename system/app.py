@@ -241,7 +241,9 @@ def api_save_degree():
     interest_od = db.child('interest').get().val()
 
     for key, value in interest_od.items():
-        if value['news_id'] == interest.news_id and 'zoom_id' in value and value['zoom_id'] == interest.zoom_id and value['name'] == interest.name:
+        if value['news_id'] == interest.news_id \
+            and 'zoom_id' in value and value['zoom_id'] == interest.zoom_id \
+            and value['name'] == interest.name:
             # news_id, zoom_id, nameが一致するデータが存在するなら、データを追加しない
             return {'status': 'ALREADY SETTLED'}
 
