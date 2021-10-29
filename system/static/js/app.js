@@ -170,7 +170,7 @@ var vmEnquete = new Vue({
               zoom_id: this.zoom_id,
               name: this.name,
               news_id: news.news_id,
-              degree: news.is_wanted ? 10 : 1,
+              degree: 10,
             })
             .then((response) => {
               `status: ${console.log(response.data.status)}`;
