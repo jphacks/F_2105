@@ -10,6 +10,7 @@
   <body>
     [% include "html/header.html" %]
     <div id="enquete">
+      <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
       <h2>名前を入力してください: <input type="text" v-model="name" placeholder="名前"></h2>
       <h2 v-model="newsQuestion">興味があるニュースページを選んでください</h2>
       <div id="wanted-news-list-wrapper">

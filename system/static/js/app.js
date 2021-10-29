@@ -135,6 +135,7 @@ var vmEnquete = new Vue({
   el: '#enquete',
   data: {
     news_list: [],
+    zoom_id: '',
     name: '',
     isAlert: false,
   },
@@ -153,6 +154,10 @@ var vmEnquete = new Vue({
   methods: {
     // 興味があるニュースを登録
     degreeSave: function () {
+      if (this.zoom_id.length === 0) {
+        window.alert('zoom idを入力してください');
+        return;
+      }
       if (this.name.length === 0) {
         window.alert('名前を入力してください');
         return;
@@ -162,6 +167,7 @@ var vmEnquete = new Vue({
         if (news.is_wanted === true) {
           axios
             .post('/api/save-degree', {
+              zoom_id: this.zoom_id,
               name: this.name,
               news_id: news.news_id,
               degree: news.is_wanted ? 10 : 1,
