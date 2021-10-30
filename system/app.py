@@ -203,7 +203,13 @@ def api_save_news():
 def api_question_news():
     """ 人事によって選ばれた近日のニュースを提示 """
 
-    news_df = db.child('news').get().to_df()
+    zoom_id = request.args.get('zoom_id') # クエリパラメータからzoom_idを取得
+
+    # 該当のzoom_idに一致するニュースを検索
+    news_df = db.child('news')\
+                .order_by_child('zoom_id')\
+                .equal_to(zoom_id)\
+                .get().to_df()
     news_df['timestamp'] = pd.to_datetime(
             news_df['timestamp'],
             format='%y-%m-%d %H:%M:%S'
