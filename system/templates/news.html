@@ -26,7 +26,7 @@
   <body>
     <div id="app">
       <v-app>
-        <v-content>
+        <v-main>
           <!-- TODO:Vuetifyのreset cssと既存のCSSのStyleが競合し、HeaderとFotterのレイアウトが崩れてしまう -->
           <div id="header">[% include "html/header.html" %]</div>
           <v-container>
@@ -45,7 +45,6 @@
         width="200"
         elevation="0"
         @click="moreNewsSuggest"
-        :ripple="{ center: false, class: 'blue--text' }"
       >
         もっと見る
       </v-btn>
@@ -59,14 +58,13 @@
         color="rgb( 12,  75, 126)"
         elevation="0"
         @click="newsSave"
-        :ripple="{ center: false, class: 'blue--text' }"
       >
         送信
       </v-btn>
       </div>
     </div>
   </v-container>
-</v-content>
+</v-main>
 [% include "html/footer.html" %]
 </v-app>
 </div>

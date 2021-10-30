@@ -5,18 +5,51 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
     <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
-    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]" />
+            
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+
     <title>評価 - オンラインのアイスブレイクツールならMeltice</title>
   </head>
   <body>
-    [% include "html/header.html" %]
+    <div id="app">
+      <v-app>
+        <v-main>
+          <!-- TODO:Vuetifyのreset cssと既存のCSSのStyleが競合し、HeaderとFotterのレイアウトが崩れてしまう -->
+          <div id="header">[% include "html/header.html" %]</div>
+          <v-container>
     <div id="analysis">
       <div>
         <h2>zoom idを入力してください<input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
       </div>
-      <div id="demo-button" @click="evaluationSet">
-        参加者を見る
-      </div>
+      <v-btn
+      class="demo-button"
+      style="font-size: 20px"
+      dark
+      color="rgb(12, 75, 126)"
+      rounded
+      height="80"
+      width="200"
+      elevation="0"
+      @click="evaluationSet"
+    >
+    参加者を見る
+    </v-btn>
       <div v-if="names.length > 0" id="evaluation-content">
         <select v-model="particular_name">
           <option v-for="name in names" :value="name">{{ name }}</option>
@@ -28,6 +61,31 @@
         </div>
       </div>
     </div>
-    [% include "html/footer.html" %]
-  </body>
+  </v-container>
+</v-main>
+[% include "html/footer.html" %]
+</v-app>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script>
+new Vue({
+el: "#app",
+vuetify: new Vuetify({}),
+});
+</script>
+</body>
 </html>
+<style lang="scss" scoped>
+.demo-button {
+font-weight: bold;
+border-radius: 40px;
+border-width: 3px;
+}
+.trial-button {
+font-weight: bold;
+border-radius: 40px;
+border-width: 3px;
+}
+</style>

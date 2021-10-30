@@ -36,7 +36,7 @@
   <body>
     <div id="app">
       <v-app>
-        <v-content>
+        <v-main>
           <!-- TODO:Vuetifyのreset cssと既存のCSSのStyleが競合し、HeaderとFotterのレイアウトが崩れてしまう -->
           <div id="header">[% include "html/header.html" %]</div>
           <v-container>
@@ -95,7 +95,7 @@
               </div>
             </div>
           </v-container>
-        </v-content>
+        </v-main>
         [% include "html/footer.html" %]
       </v-app>
     </div>
