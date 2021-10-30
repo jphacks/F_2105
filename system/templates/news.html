@@ -30,43 +30,38 @@
           <!-- TODO:Vuetifyのreset cssと既存のCSSのStyleが競合し、HeaderとFotterのレイアウトが崩れてしまう -->
           <div id="header">[% include "html/header.html" %]</div>
           <v-container>
-    <div id="news">
-      <h2>Zoom Meeting IDを入力してください</h2>
-      <span>
-        <input class="balloon" id="zoom_text_style" type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx" autofocus maxlength="11" /><label for="zoom_text_style">Zoom ID</label>
-      </span>
-      <h2 v-model="newsSuggest">質問に入れたいニュースページを選んでください</h2>
-      <div id="wanted-news-list-wrapper">
-        <wanted-news-list v-for="(news, ix) in news_list" v-if="ix<range_end" :key="news.news_id" :news="news" @is_wanted="(is_wanted) => news.is_wanted=is_wanted"></wanted-news-list>
-
-        <v-btn
-        class="demo-button"
-        style="font-size: 20px"
-        dark
-        color="rgb(12, 75, 126)"
-        rounded
-        height="80"
-        width="200"
-        elevation="0"
-        @click="moreNewsSuggest"
-      >
-        もっと見る
-      </v-btn>
-      <v-btn
-        class="trial-button"
-        style="font-size: 20px"
-        rounded
-        outlined
-        height="80"
-        width="200"
-        color="rgb( 12,  75, 126)"
-        elevation="0"
-        @click="newsSave"
-      >
-        送信
-      </v-btn>
-      </div>
-    </div>
+            <div id="news">
+              <h2 v-model="newsSuggest">質問に入れたいニュースページを選んでください</h2>
+              <div id="wanted-news-list-wrapper">
+                <wanted-news-list v-for="(news, ix) in news_list" v-if="ix<range_end" :key="news.news_id" :news="news" @is_wanted="(is_wanted) => news.is_wanted=is_wanted"></wanted-news-list>
+                <v-btn
+                class="demo-button"
+                style="font-size: 20px"
+                dark
+                color="rgb(12, 75, 126)"
+                rounded
+                height="80"
+                width="200"
+                elevation="0"
+                onclick="moreNewsSuggest"
+              >
+                もっと見る
+              </v-btn>
+              <v-btn
+                class="trial-button"
+                style="font-size: 20px"
+                rounded
+                outlined
+                height="80"
+                width="200"
+                color="rgb( 12,  75, 126)"
+                elevation="0"
+                onclick="newsSave"
+              >
+                送信
+            </v-btn>
+          </div>
+        </div>
   </v-container>
 </v-main>
 [% include "html/footer.html" %]

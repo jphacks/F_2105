@@ -27,7 +27,7 @@ var vmTorrap = new Vue({
 
 // eslint-disable-next-line no-unused-vars
 var vmHeader = new Vue({
-  el: '#header',
+  el: "#header",
   methods: {
     navPoint(link) {
       if (location.pathname === link) {
@@ -88,8 +88,8 @@ var vmNews = new Vue({
     news_list: [],
     range_end: 6,
     range_shift: 6,
-    zoom_id: '',
     isAlert: false,
+    zoom_id: "",
   },
   computed: {
     newsSuggest: function () {
@@ -125,11 +125,12 @@ var vmNews = new Vue({
               this.result = response.data.status;
               console.log(`status: ${this.result}`);
             });
+          window.alert("送信しました！");
           this.isAlert = true;
         }
       }
-      if (this.isAlert) {
-        window.alert('送信しました！');
+      if (this.isAlert === false) {
+        window.alert("ニュースを選択してください");
       }
     },
   },
@@ -164,20 +165,21 @@ var vmEnquete = new Vue({
       }
       for (let i = 0; i < this.news_list.length; ++i) {
         const news = this.news_list[i];
-        axios
-          .post('/api/save-degree', {
-            name: this.name,
-            news_id: news.news_id,
-            degree: news.is_wanted ? 10 : 1,
-          })
-          .then((response) => {
-            `status: ${console.log(response.data.status)}`;
-          });
-        this.isAlert = true;
+        if (news.is_wanted === true) {
+          axios
+            .post('/api/save-degree', {
+              name: this.name,
+              news_id: news.news_id,
+              degree: news.is_wanted ? 10 : 1,
+            })
+            .then((response) => {
+              `status: ${console.log(response.data.status)}`;
+            });
+          window.alert('送信しました！');
+          this.isAlert = true;
+        }
       }
-      if (this.isAlert) {
-        window.alert('送信しました！');
-      } else {
+      if (this.isAlert === false) {
         window.alert('ニュースを選択してください');
       }
     },
@@ -346,7 +348,7 @@ var vmComputing = new Vue({
     names: [],
     post_names: new Array(5),
     sounds: {},
-    zoom_id: '',
+    zoom_id: "",
     movie: null,
     errorMessage: null,
   },
@@ -364,7 +366,7 @@ var vmComputing = new Vue({
         .catch(() => {
           // zoom idが存在しない場合
           this.names = []; // 表示をリセット
-          this.errorMessage = '指定のzoom idは存在しません';
+          this.errorMessage = "指定のzoom idは存在しません";
         });
     },
     movieSet: function (event) {

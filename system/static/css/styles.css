@@ -1,5 +1,5 @@
-@import "compass/css3";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800);
+/* @import "compass/css3";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800); */
 /* header.html */
 
 body {
@@ -315,41 +315,41 @@ body {
   display: inline-block;
 }
 
- /* 10月27日追加 テキストボックスデザイン */
+/* 10月27日追加 テキストボックスデザイン */
 #news span {
   position: relative;
   display: inline-block;
-  margin: 20px 10px;/* 30px 10px */
+  margin: 20px 10px; /* 30px 10px */
 }
 
 #suggestion span {
   position: relative;
   display: inline-block;
-  margin: 20px 10px;/* 30px 10px */
+  margin: 20px 10px; /* 30px 10px */
 }
 
 #computing span {
   position: relative;
   display: inline-block;
-  margin: 20px 10px;/* 30px 10px */
+  margin: 20px 10px; /* 30px 10px */
 }
 
 #analysis span {
   position: relative;
   display: inline-block;
-  margin: 20px 10px;/* 30px 10px */
+  margin: 20px 10px; /* 30px 10px */
 }
 
 #enquete span {
   position: relative;
   display: inline-block;
-  margin: 20px 10px;/* 30px 10px */
+  margin: 20px 10px; /* 30px 10px */
 }
 
 #room span {
   position: relative;
   display: inline-block;
-  margin: 20px 10px;/* 30px 10px */
+  margin: 20px 10px; /* 30px 10px */
 }
 
 .balloon {
@@ -359,17 +359,17 @@ body {
   font-family: "Open Sans", sans;
   font-weight: 400;
   color: #000000;
-  background: #efefefb4;/* #efefef */
+  background: #efefefb4; /* #efefef */
   border: 0;
   border-radius: 3px;
   outline: 0;
   text-indent: 60px;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .balloon::-webkit-input-placeholder {
-  color: #efefef;/* #efefef */
+  color: #efefef; /* #efefef */
   text-indent: 0;
   font-weight: 300;
 }
@@ -381,13 +381,13 @@ body {
   left: 0;
   bottom: 8px;
   padding: 3px 15px; /* 5 15 */
-  color: #032429;/* #032429 */
+  color: #032429; /* #032429 */
   font-size: 11px;
   font-weight: 700;
   /*text-transform: uppercase;*/
   text-shadow: 0 1px 0 rgba(19, 74, 70, 0); /* rgba(19, 74, 70, 0) */
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border-radius: 3px;
   background: rgba(122, 184, 147, 0); /* rgba(122, 184, 147, 0) */
 }
@@ -403,8 +403,8 @@ body {
   border-left: 3px solid transparent;
   border-right: 3px solid transparent;
   border-top: 3px solid rgba(122, 184, 147, 0);
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .balloon:focus,
@@ -412,7 +412,7 @@ body {
   /* 書き込み時 文字 色 */
   color: #fff; /* #377D6A */
   text-indent: 0;
-  background: rgb( 12,  75, 126); /* #fff */
+  background: rgb(12, 75, 126); /* #fff */
 }
 
 .balloon:focus::-webkit-input-placeholder,
@@ -423,14 +423,14 @@ body {
 .balloon:focus + label,
 .balloon:active + label {
   color: #fff;
-  text-shadow: 0 1px 0 rgb( 12,  75, 126);
+  text-shadow: 0 1px 0 rgb(12, 75, 126);
   background: rgb(48, 84, 114); /* #7ab893 */
   -webkit-transform: translateY(-40px);
-          transform: translateY(-40px);
+  transform: translateY(-40px);
 }
 
 .balloon:focus + label:after,
 .balloon:active + label:after {
-  border-top: 4px solid rgb( 12,  75, 126); /* #7ab893 */
+  border-top: 4px solid rgb(12, 75, 126); /* #7ab893 */
 }
 /*# sourceMappingURL=style.css.map */
