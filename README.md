@@ -13,6 +13,14 @@
 - 人事の方(以下、人事、とします)
 - アイスブレイク参加者の方(以下、参加者、とします)
 
+#### 発表資料
+![im 1](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/1.png)
+![im 2](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/2.png)
+![im 3](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/3.png)
+![im 4](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/4.png)
+![im 5](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/5.png)
+![im 6](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/6.png)
+
 #### Melticeの起動手順
 
 ##### 人事がニュースを選ぶフェーズ
