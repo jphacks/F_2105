@@ -129,7 +129,8 @@ body {
 }
 
 #video {
-  width: 25%;
+  /* videoをv-row内の要素とした関係上、widthが相対比率となってしまう & ブラウザの画面サイズに依ってしまうため、サイズを最大値固定としました*/
+  max-width: 500px;
   display: inline-block;
 }
 
