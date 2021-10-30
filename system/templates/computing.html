@@ -14,7 +14,11 @@
         {{ errorMessage }}
       </div>
       <div>
-        <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
+        <h2>Zoom Meeting IDを入力してください</h2>
+        <span>
+          <input class="balloon" id="zoom_text_style" type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx" autofocus maxlength="11" /><label for="zoom_text_style">Zoom ID</label>
+        </span>
+        <br><!-- 改行 （横に並んでしまったので追加） -->
         <div id="demo-button" @click="namesSet">
           zoom idを送信
         </div>
