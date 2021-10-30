@@ -89,7 +89,7 @@ var vmNews = new Vue({
     range_end: 6,
     range_shift: 6,
     zoom_id: '',
-    isAlert: false
+    isAlert: false,
   },
   computed: {
     newsSuggest: function () {
