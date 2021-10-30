@@ -89,6 +89,7 @@ var vmNews = new Vue({
     range_end: 6,
     range_shift: 6,
     zoom_id: '',
+    isAlert: false
   },
   computed: {
     newsSuggest: function () {
@@ -124,7 +125,11 @@ var vmNews = new Vue({
               this.result = response.data.status;
               console.log(`status: ${this.result}`);
             });
+          this.isAlert = true;
         }
+      }
+      if (this.isAlert) {
+        window.alert('送信しました！');
       }
     },
   },
@@ -159,21 +164,20 @@ var vmEnquete = new Vue({
       }
       for (let i = 0; i < this.news_list.length; ++i) {
         const news = this.news_list[i];
-        if (news.is_wanted === true) {
-          axios
-            .post('/api/save-degree', {
-              name: this.name,
-              news_id: news.news_id,
-              degree: news.is_wanted ? 10 : 1,
-            })
-            .then((response) => {
-              `status: ${console.log(response.data.status)}`;
-            });
-          window.alert('送信しました！');
-          this.isAlert = true;
-        }
+        axios
+          .post('/api/save-degree', {
+            name: this.name,
+            news_id: news.news_id,
+            degree: news.is_wanted ? 10 : 1,
+          })
+          .then((response) => {
+            `status: ${console.log(response.data.status)}`;
+          });
+        this.isAlert = true;
       }
-      if (this.isAlert === false) {
+      if (this.isAlert) {
+        window.alert('送信しました！');
+      } else {
         window.alert('ニュースを選択してください');
       }
     },
