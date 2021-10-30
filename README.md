@@ -20,6 +20,8 @@
 ![im 4](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/4.png)
 ![im 5](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/5.png)
 ![im 6](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/6.png)
+![im 7](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/7.png)
+![im 8](https://raw.githubusercontent.com/jphacks/F_2105/master/expression-images/8.png)
 
 #### Melticeの起動手順
 
