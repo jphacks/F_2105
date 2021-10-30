@@ -237,26 +237,21 @@ def api_save_degree():
     interest = Interest.from_dict(payload)
     print(f'{interest=}')
 
-    try:
-        interest_od = db.child('interest')\
-                .order_by_child('news_id')\
-                .equal_to(interest.news_id)\
-                .get().val()
+    interest_od = db.child('interest').get().val()
 
-    # ニュースがない場合は追加
-    except IndexError:
-        db.child('interest').push(interest.to_dict())
-        print('saving interest....')
+    for key, value in interest_od.items():
+        if value['name'] == interest.name and value['news_id'] == interest.news_id:
+            # 興味度を更新する
+            db.child('interest').child(key).update(interest.to_dict())
+            print('updating interest....')
 
-        return {'status': 'SAVED'}
+            return {'status': 'UPDATED'}
 
-    # ニュースがある場合は追加しない
-    else:
-        k = list(interest_od.keys())[0]
-        db.child('interest').child(k).update(interest.to_dict())
-        print('updating interest....')
+    # データを追加する
+    db.child('interest').push(interest.to_dict())
+    print('saving interest....')
 
-        return {'status': 'UPDATED'}
+    return {'status': 'SAVED'}
 
 
 @deco_api
