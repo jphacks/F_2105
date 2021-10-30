@@ -97,9 +97,9 @@
 ## システム開発者紹介
 TEAM TOKIのメンバー
 - [Nozomi Toba](https://withcation.com)
-- 
-- 
-- 
+- [Tatsuya Ichino](https://github.com/roaris)
+- [Yu Osaka](https://github.com/yud0uhu)
+- [Yoshiyuki Kubota](https://yocchi0425.github.io/self-introduction/) 
 
 ## For Developers
 
