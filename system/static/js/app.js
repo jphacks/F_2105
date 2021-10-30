@@ -139,14 +139,15 @@ var vmNews = new Vue({
 var vmEnquete = new Vue({
   el: '#enquete',
   data: {
+    zoom_id: '',
     news_list: [],
     name: '',
     isAlert: false,
   },
-  computed: {
+  methods: {
     // 人事によって選ばれた近日のニュースを提示
     newsQuestion: function () {
-      axios.get('/api/question-news').then((response) => {
+      axios.get(`/api/question-news?zoom_id=${this.zoom_id}`).then((response) => {
         this.news_list = response.data.res;
         console.log(this.news_list);
         for (let i = 0; i < this.news_list.length; ++i) {
@@ -154,8 +155,6 @@ var vmEnquete = new Vue({
         }
       });
     },
-  },
-  methods: {
     // 興味があるニュースを登録
     degreeSave: function () {
       if (this.name.length === 0) {
