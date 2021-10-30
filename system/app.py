@@ -173,26 +173,29 @@ def api_save_news():
         ]}
 
     news = News.from_dict(payload)
+    zoom_id = request.json['zoom_id']
     print(f'{news=}')
 
-    try:
-        news_od = db.child('news')\
-                .order_by_child('news_id')\
-                .equal_to(news.news_id)\
-                .get().val()
+    news_od = db.child('news').get().val()
+    settled = False # news_idとzoom_idの組が一致するデータが存在するかのフラグ
 
-    # ニュースがない場合は追加
-    except IndexError:
-        db.child('news').push(news.to_dict())
+    for value in news_od.values():
+        if value['news_id'] == news.news_id and 'zoom_id' in value and value['zoom_id'] == zoom_id:
+            settled = True
+
+    # データを追加する
+    if not settled:
+        push_data = news.to_dict()
+        push_data['zoom_id'] = zoom_id
+        db.child('news').push(push_data)
         print('saving news....')
 
         return {'status': 'SAVED'}
 
-    # ニュースがある場合は追加しない
-    else:
-        print(f'the news already settled. <{news_od=}>')
+    # データを追加しない
+    print(f'the news already settled. <{news_od=}>')
 
-        return {'status': 'ALREADY SETTLED'}
+    return {'status': 'ALREADY SETTLED'}
 
 
 @deco_api
