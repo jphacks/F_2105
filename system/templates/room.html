@@ -33,9 +33,9 @@
         <div id="header">[% include "html/header.html" %]</div>
         <v-container>
     <div id="room">
-<<<<<<< HEAD
       <h2>名前を入力してください: <input type="text" v-model="name" placeholder="名前"></h2>
       <h2>zoom idを入力してください: <input type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx"></h2>
+      <br><!-- 改行 （横に並んでしまったので追加） -->
       <v-btn
       class="demo-button"
       style="font-size: 20px"
@@ -49,20 +49,6 @@
     >
     会話を開始する
     </v-btn>
-=======
-      <h2>名前を入力してください</h2>
-      <span>
-        <input class="balloon" id="name_text_style" type="text" v-model="name" placeholder="your name" autofocus /><label for="name_text_style">名前</label>
-      </span>
-      <h2>Zoom Meeting IDを入力してください</h2>
-      <span>
-        <input class="balloon" id="zoom_text_style" type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx" maxlength="11" /><label for="zoom_text_style">Zoom ID</label>
-      </span>
-      <br><!-- 改行 （横に並んでしまったので追加） -->
-      <div id="demo-button" @click="roomSet">
-        会話を開始する
-      </div>
->>>>>>> 46cdaf3f3749af67d36a71c1644e0ca4bfa7dba9
     </div>
   </v-container>
 </v-main>

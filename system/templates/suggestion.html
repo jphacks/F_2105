@@ -33,8 +33,8 @@
           <div id="header">[% include "html/header.html" %]</div>
           <v-container>
     <div id="suggestion">
-<<<<<<< HEAD
       <h2>zoom idを入力してください: <input type="text" placeholder="xxx xxxx xxxx" v-model="zoom_id"></h2>
+      <br><!-- 改行 （横に並んでしまったので追加） -->
       <v-btn
       class="demo-button"
       style="font-size: 20px"
@@ -48,16 +48,6 @@
     >
     会話を開始する
     </v-btn>
-=======
-      <h2>Zoom Meeting IDを入力してください</h2>
-      <span>
-        <input class="balloon" id="zoom_text_style" type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx" autofocus maxlength="11" /><label for="zoom_text_style">Zoom ID</label>
-      </span>
-      <br><!-- 改行 （横に並んでしまったので追加） -->
-      <div id="demo-button" @click="newsSet">
-        会話を開始する
-      </div>
->>>>>>> 46cdaf3f3749af67d36a71c1644e0ca4bfa7dba9
       <div id="suggested-news" v-if="Object.keys(news).length > 0">
         <h3>{{ news.title }}</h3>
         <img :src="news.imgsrc">
