@@ -31,6 +31,10 @@
           <div id="header">[% include "html/header.html" %]</div>
           <v-container>
     <div id="news">
+      <h2>Zoom Meeting IDを入力してください</h2>
+      <span>
+        <input class="balloon" id="zoom_text_style" type="text" v-model="zoom_id" placeholder="xxx xxxx xxxx" autofocus maxlength="11" /><label for="zoom_text_style">Zoom ID</label>
+      </span>
       <h2 v-model="newsSuggest">質問に入れたいニュースページを選んでください</h2>
       <div id="wanted-news-list-wrapper">
         <wanted-news-list v-for="(news, ix) in news_list" v-if="ix<range_end" :key="news.news_id" :news="news" @is_wanted="(is_wanted) => news.is_wanted=is_wanted"></wanted-news-list>

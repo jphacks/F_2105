@@ -27,7 +27,10 @@
         <v-main>
     <v-container>
     <div id="enquete">
-      <h2>名前を入力してください: <input type="text" v-model="name" placeholder="名前"></h2>
+      <h2>名前を入力してください<!-- <input type="text" v-model="name" placeholder="名前"> --></h2>
+      <span>
+        <input class="balloon" id="name_text_style" type="text" v-model="name" placeholder="your name" autofocus /><label for="name_text_style">名前</label>
+      </span>
       <h2 v-model="newsQuestion">興味があるニュースページを選んでください</h2>
       <div id="wanted-news-list-wrapper">
         <wanted-news-list v-for="news in news_list" :key="news.news_id" :news="news" @is_wanted="(is_wanted) => news.is_wanted=is_wanted"></wanted-news-list>
