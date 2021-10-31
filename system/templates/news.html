@@ -3,90 +3,108 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
-    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
-    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]" />
     <link
-    href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
-    rel="stylesheet"
-  />
-  <link
-    href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
-    rel="stylesheet"
-  />
-  <link
-    href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
-    rel="stylesheet"
-  />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
-  />
+      rel="stylesheet"
+      href="[[ url_for('static', filename='css/styles.css') ]]"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="[[ url_for('static', filename='images/favicon.png') ]]"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
     <title>ニュース登録 - オンラインのアイスブレイクツールならMeltice</title>
   </head>
   <body>
+    <div id="header">[% include "html/header.html" %]</div>
     <div id="app">
-      <v-app>
-        <v-main>
-          <!-- TODO:Vuetifyのreset cssと既存のCSSのStyleが競合し、HeaderとFotterのレイアウトが崩れてしまう -->
-          <div id="header">[% include "html/header.html" %]</div>
-          <v-container>
-            <div id="news">
-              <h2 v-model="newsSuggest">質問に入れたいニュースページを選んでください</h2>
+      <div id="news">
+        <v-app>
+          <v-main>
+            <v-container>
+              <h2>Zoom Meeting IDを入力してください</h2>
+              <span>
+                <input
+                  class="balloon"
+                  id="zoom_text_style"
+                  type="text"
+                  v-model="zoom_id"
+                  placeholder="xxx xxxx xxxx"
+                  autofocus
+                  maxlength="11"
+                /><label for="zoom_text_style">Zoom ID</label>
+              </span>
+              <h2 v-model="newsSuggest">
+                質問に入れたいニュースページを選んでください
+              </h2>
               <div id="wanted-news-list-wrapper">
-                <wanted-news-list v-for="(news, ix) in news_list" v-if="ix<range_end" :key="news.news_id" :news="news" @is_wanted="(is_wanted) => news.is_wanted=is_wanted"></wanted-news-list>
-                <v-btn
-                class="demo-button"
-                style="font-size: 20px"
-                dark
-                color="rgb(12, 75, 126)"
-                rounded
-                height="80"
-                width="200"
-                elevation="0"
-                onclick="moreNewsSuggest"
-              >
-                もっと見る
-              </v-btn>
-              <v-btn
-                class="trial-button"
-                style="font-size: 20px"
-                rounded
-                outlined
-                height="80"
-                width="200"
-                color="rgb( 12,  75, 126)"
-                elevation="0"
-                onclick="newsSave"
-              >
-                送信
-            </v-btn>
-          </div>
-        </div>
-  </v-container>
-</v-main>
-[% include "html/footer.html" %]
-</v-app>
-</div>
+                <wanted-news-list
+                  v-for="(news, ix) in news_list"
+                  v-if="ix<range_end"
+                  :key="news.news_id"
+                  :news="news"
+                  @is_wanted="(is_wanted) => news.is_wanted=is_wanted"
+                ></wanted-news-list>
+                <div id="demo-button" @click="moreNewsSuggest">もっと見る</div>
+                <div id="trial-button" @click="newsSave">送信</div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script>
-new Vue({
-el: "#app",
-vuetify: new Vuetify({}),
-});
-</script>
-</body>
+                <v-btn
+                  class="trial-button"
+                  style="font-size: 20px"
+                  rounded
+                  outlined
+                  height="80"
+                  width="200"
+                  color="rgb( 12,  75, 126)"
+                  elevation="0"
+                  @click="degreeSave"
+                >
+                  送信
+                </v-btn>
+              </div>
+            </v-container>
+          </v-main>
+          [% include "html/footer.html" %]
+        </v-app>
+      </div>
+    </div>
+
+    <!--- TODO:ここでapp.jsのvmHeaderインスタンスを上書きしてしまう-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+      });
+    </script>
+  </body>
 </html>
+
 <style lang="scss" scoped>
-.demo-button {
-font-weight: bold;
-border-radius: 40px;
-border-width: 3px;
-}
-.trial-button {
-font-weight: bold;
-border-radius: 40px;
-border-width: 3px;
-}
+  .demo-button {
+    font-weight: bold;
+    border-radius: 40px;
+    border-width: 3px;
+  }
+  .trial-button {
+    font-weight: bold;
+    border-radius: 40px;
+    border-width: 3px;
+  }
 </style>
