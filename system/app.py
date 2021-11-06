@@ -648,6 +648,13 @@ def page_contact():
 
     return render_template('contact.html')
 
+
+@app.route('/contact-thanks')
+def page_contact_thanks():
+    """ page contact """
+
+    return render_template('contact-thanks.html')
+
 if __name__ == '__main__':
 
     app.run(debug=True)

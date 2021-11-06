@@ -308,3 +308,63 @@ body {
 #evaluation-content div {
   display: inline-block;
 }
+
+/*  contact.html  */
+#contact {
+  padding: 0px 300px;
+}
+
+#contact h2{
+  text-align: center;
+}
+
+#contact #form ::placeholder {
+  color: rgb(85, 76, 76);
+}
+
+#contact #button {
+  border: none;
+  border-radius : 3px;
+  font-size: 1.1em;
+  padding: .3em 2em;
+  margin-top: 2em;
+  background: #76C6AB;
+  color: #fff;
+  transition: .2s ease-in-out;
+  -webkit-appearance: none;
+}
+
+#contact #button:hover {
+  box-shadow: 1px 1px 10px #fff;
+  cursor: pointer;
+  opacity:0.8;
+}
+
+#contact #button:active {
+box-shadow: none;
+}
+
+#name, #email, #tel, #company, #msg {
+padding: .5em;
+border: none;
+border-radius: 3px;
+background: #e0e0e0;
+font-size: 1em;
+max-width: 100%;
+width: 100%;
+color: #454545;
+}
+
+#name, #email, #tel, #company {
+height: 2.5em;
+}
+
+#contact #msg {
+min-height: 250px;
+min-width: 100%;
+}
+
+#contact .label {
+padding: 1em 0 5px;
+font-weight: bold;
+}

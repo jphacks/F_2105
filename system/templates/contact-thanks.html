@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script async src="[[ url_for('static', filename='js/app.js') ]]"></script>
+    <link rel="stylesheet" href="[[ url_for('static', filename='css/styles.css') ]]"></script>
+    <link rel="icon" type="image/x-icon" href="[[ url_for('static', filename='images/favicon.png') ]]">
+    <title>ニュースの話題提示 - オンラインのアイスブレイクツールならMeltice</title>
+    <link rel="stylesheet" href="../static/css/contact/contact.css">
+  </head>
+  <body>
+    [% include "html/header.html" %]
+    <!-- お問い合わせ -->
+    <div id="contact-thanks" class="container">
+            <p>送信しました。</p>
+            <a href="/">トップへ</a>
+    </div>
+    <!-- /問い合わせ -->
+    [% include "html/footer.html" %]
+  </body>
+</html>
